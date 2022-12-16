@@ -1,0 +1,23 @@
+{
+  "name": "ccge",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pbstar/ccge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pbstar/ccge/issues"
+  },
+  "homepage": "https://github.com/pbstar/ccge#readme",
+  "dependencies": {
+    "@vant/weapp": "^1.10.9",
+    "miniprogram-sm-crypto": "^0.3.11"
+  }
+}

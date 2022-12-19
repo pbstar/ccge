@@ -1,4 +1,6 @@
 // pages/mine/mine.js
+import  {tip}  from "../../utils/vant";
+import $http from "../../utils/http";
 Page({
 
   /**
@@ -8,12 +10,14 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUseGetUserProfile: false,
+    openid:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    wx.cloud.init()
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true
@@ -57,6 +61,35 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+
+  getUserProfile2(e) {
+    console.log(1);
+    // tip('ceshi')
+    // let _this=this
+    $http.get("/api/user",{
+      id:10000
+    }).then(res=> {
+      console.log(res);
+    })
+    // wx.cloud.callContainer({
+    //   "config": {
+    //     "env": "prod-5glcmtn38ac86ffc"
+    //   },
+    //   "path": "",
+    //   "header": {
+    //     "X-WX-SERVICE": "express-63sa",
+    //     "content-type": "application/json"
+    //   },
+    //   "method": "get",
+    //   "data": "",
+    //   "success": function(res) {
+    //     console.log(res);
+    //     _this.setData({
+    //       openid: res.data
+    //     })
+    //   }
+    // })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

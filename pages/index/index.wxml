@@ -21,4 +21,6 @@
     <text class="user-motto">{{motto}}</text>
   </view>
   <van-button type="primary">主要按钮</van-button>
+  <van-dialog id="van-dialog" />
+
 </view>

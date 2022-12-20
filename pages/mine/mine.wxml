@@ -13,4 +13,6 @@
   <text>{{openid}}</text>
   <van-button type="primary">主要按钮</van-button>
   <van-toast id="van-toast" />
+  <van-dialog id="van-dialog" />
+
 </view>

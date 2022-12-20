@@ -1,20 +1,31 @@
 // app.js
+import $storage from "./utils/storage";
+import $http from "./utils/http";
+import Dialog from '@vant/weapp/dialog/dialog';
 App({
   onLaunch() {
     
-    // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+    
+    let user_id=$storage.get('user_id')
+    if(user_id){
+      console.log(user_id);
+    }else{
+      // $http.get("/api/wx_openid").then(res=> {
+      //   console.log(res);
+      // })
+    }
+  },
+  getUserInfo(){
+    console.log(22);
+    wx.getUserProfile({
+      desc: '用于完善用户信息',
+      success: (res) => {
+        console.log(222);
+        console.log(res);
+      },
+      fail:(res)=>{
+console.log(res);
       }
     })
   },
-  globalData: {
-    userInfo: null
-  }
 })

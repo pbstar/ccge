@@ -1,6 +1,7 @@
 // pages/mine/mine.js
 import  {tip}  from "../../utils/vant";
 import $http from "../../utils/http";
+import Dialog from '@vant/weapp/dialog/dialog';
 Page({
 
   /**
@@ -17,6 +18,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    Dialog.alert({
+      message: '弹窗内容',
+      theme: 'round-button',
+    }).then(() => {
+      this.getUserInfo()
+    });
     wx.cloud.init()
     if (wx.getUserProfile) {
       this.setData({
@@ -46,6 +53,7 @@ Page({
     })
     wx.getUserProfile({
       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      lang:'zh_CN',
       success: (res) => {
         console.log(res);
         this.setData({
@@ -55,11 +63,17 @@ Page({
       }
     })
   },
-  getUserInfo(e) {
-    // 不推荐使用 getUserInfo 获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+  getUserInfo(){
+    console.log(22);
+    wx.getUserProfile({
+      desc: '用于完善用户信息',
+      success: (res) => {
+        console.log(222);
+        console.log(res);
+      },
+      fail:(res)=>{
+console.log(res);
+      }
     })
   },
 
@@ -72,23 +86,10 @@ Page({
     }).then(res=> {
       console.log(res);
     })
-    // wx.cloud.callContainer({
-    //   "config": {
-    //     "env": "prod-5glcmtn38ac86ffc"
-    //   },
-    //   "path": "",
-    //   "header": {
-    //     "X-WX-SERVICE": "express-63sa",
-    //     "content-type": "application/json"
-    //   },
-    //   "method": "get",
-    //   "data": "",
-    //   "success": function(res) {
-    //     console.log(res);
-    //     _this.setData({
-    //       openid: res.data
-    //     })
-    //   }
+    // $http.get("/api/user/add",{
+    //   wx_code:
+    // }).then(res=> {
+    //   console.log(res);
     // })
   },
   /**
